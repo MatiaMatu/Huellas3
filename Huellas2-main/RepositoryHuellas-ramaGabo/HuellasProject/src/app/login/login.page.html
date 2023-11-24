@@ -1,0 +1,47 @@
+<ion-content>
+  <div class="login-section ion-padding">
+    <div class="heading ion-padding">
+      <h1>Bienvenido a Huellas!</h1>
+      <p>Ingresa para continuar</p>
+    </div>
+    <form [formGroup]="loginForm">
+    <div class="login-form ion-padding">
+      <div class="form-input">
+        <ion-icon name="mail-outline"></ion-icon>
+        <ion-item>
+          <ion-label position="floating">E-Mail</ion-label>
+          <ion-input formControlName="email" ></ion-input>
+        </ion-item>
+        <div *ngIf="this.loginForm.controls?.['email'].touched && this.loginForm.controls?.['email'].invalid">
+          <ion-text *ngIf="errorControl.email.errors?.required" class="errorInput" color="danger">
+            Ingrese e-mail
+          </ion-text>
+          <ion-text *ngIf="errorControl.email.errors?.pattern" class="errorInput" color="danger">
+            El e-mail no es valido
+          </ion-text>
+        </div>
+      </div>
+      <div class="form-input">
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input formControlName="password" type="password" ></ion-input>
+        </ion-item>
+        <div *ngIf="this.loginForm.controls?.['password'].touched && this.loginForm.controls?.['password'].invalid">
+          <ion-text *ngIf="errorControl.password.errors?.required" class="errorInput" color="danger">
+            Ingrese Contraseña
+          </ion-text>
+          
+        </div>
+      </div>
+    
+    </div>
+  </form>
+    <div class="action-button ion-padding">
+      <ion-button size="large" (click)="login()" class="login-button">Ingresar</ion-button>
+      <br>
+      <ion-button size="tiny" fill="clear" class="login-button" routerLink="/recover-password">¿Olvidaste tu contraseña?</ion-button>
+      <ion-button class="signup-button" size="large" fill="outline" routerLink="/register">Registrarse</ion-button>
+    </div>
+  </div>
+</ion-content>

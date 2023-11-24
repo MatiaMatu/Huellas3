@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Postear</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="homepage-background" [fullscreen]="true">
+<div class="bienvenida">
+  <div class="itembienv" id="item1">
+    <p>Crea un aviso! </p>
+  </div>
+  <div div class="itembienv" id="item2">
+    <p></p>
+  </div>
+</div>
+
+<ion-card class="semitransparent-card">
+  <ion-card-header class="semitransparent-card">
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <div class="semitransparent-card">
+    <ion-label position="floating">Titulo</ion-label>
+    <ion-input type="text" class="form-control" formControlName="name"></ion-input>
+  </div>
+  <div class="semitransparent-card">
+      <label class="form-label">Description</label>
+      <ion-textarea rows="10" formControlName="description"></ion-textarea>  </div>
+
+
+
+      <div class="semitransparent-card">
+        <ion-label position="floating">Date</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" formControlName="date"></ion-datetime>
+       </div>
+           
+  <div class="semitransparent-card">
+      <label class="form-label">Latitude</label>
+      <ion-input type="text" class="form-control" formControlName="latitude"></ion-input>
+  </div>
+  <div class="semitransparent-card">
+      <label class="form-label">Longitude</label>
+      <ion-input type="text" class="form-control" formControlName="longitude"></ion-input>
+  </div>
+  <div class="semitransparent-card">
+      <label class="form-label">Image</label>
+      <ion-input type="text" class="form-control" formControlName="image"></ion-input>
+  </div>
+  
+  <div class="center">
+    <ion-button type="submit" shape="round">Publicar</ion-button>
+  </div>
+
+</form>
+</ion-card-header>
+</ion-card>
+</ion-content>

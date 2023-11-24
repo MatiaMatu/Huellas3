@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "huellas-5510b": {
+      "hosting": {
+        "app": [
+          "huellas-5510b"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "huellas-5510b"
+  }
+}
