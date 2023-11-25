@@ -16,6 +16,9 @@ addPlace(place: Place){
   return addDoc(placeRef, place);
 }
 
-
+getPlaces(): Observable<Place[]>{
+  const placeRef = collection(this.firestore, 'places');
+  return collectionData (placeRef, { idField: 'id'}) as Observable<Place[]>;
+}
 
 }

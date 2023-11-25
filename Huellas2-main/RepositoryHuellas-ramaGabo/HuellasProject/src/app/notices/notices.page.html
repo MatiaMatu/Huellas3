@@ -16,20 +16,16 @@
 
 
   </div>
-  <ion-card  class="semitransparent-card">
+  <ion-card *ngFor="let place of places" class="semitransparent-card">
     <ion-card-header>
-      <ion-card-title> </ion-card-title>
-      <ion-card-subtitle> ULT VEZ VISTO: </ion-card-subtitle>
+      <ion-card-title>{{place.name}}</ion-card-title>
+      <ion-card-subtitle> ULT VEZ VISTO:{{place.date}} </ion-card-subtitle>
     </ion-card-header>
   
     <ion-card-content>
-      <swiper-container>
-        <swiper-slide><img src="/assets/imgs/gato1.jpg"></swiper-slide>
-        <swiper-slide><img src="/assets/imgs/gato2.jpg"></swiper-slide>
-        <swiper-slide><img src="/assets/imgs/gato3.jpg"></swiper-slide>
-      </swiper-container>
+      <ion-img class=image src={{place.image}}></ion-img>
       <br>
-      <p class="descripcion">  </p>
+      <p class="descripcion">{{place.description}}</p>
           <br>
       <div class="center">
         <ion-button shape="round">Ver</ion-button>

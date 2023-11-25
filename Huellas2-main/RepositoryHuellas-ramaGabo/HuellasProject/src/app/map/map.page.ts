@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Geolocation } from '@capacitor/geolocation';
+import Place from '../interfaces/place.interface';
+import { PlacesService } from '../services/places.service';
 
 
 
@@ -16,6 +18,8 @@ declare var google: any;
 })
 export class MapPage implements OnInit {
 
+
+  places: Place[];
 
   posteo: any ={};
   map: any;
@@ -78,7 +82,7 @@ export class MapPage implements OnInit {
     
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private placesService: PlacesService) { }
 
 
 
@@ -143,7 +147,10 @@ export class MapPage implements OnInit {
     this.addMarkersToMap(this.markers);
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.placesService.getPlaces().subscribe(places => {
+      this.places = places;
+    })
 
   }
 

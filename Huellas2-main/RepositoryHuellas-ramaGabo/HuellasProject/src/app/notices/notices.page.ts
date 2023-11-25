@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToastController, ToastOptions } from '@ionic/angular';
 import { Posteo } from '../clases/posteo';
+import { PlacesService } from '../services/places.service';
+import Place from '../interfaces/place.interface';
 
 @Component({
   selector: 'app-notices',
@@ -10,6 +12,9 @@ import { Posteo } from '../clases/posteo';
   styleUrls: ['./notices.page.scss'],
 })
 export class NoticesPage implements OnInit {
+  
+  places: Place[];
+
   username: string ='';
   data: any;
   posteos: any;
@@ -22,7 +27,7 @@ export class NoticesPage implements OnInit {
   }
 
 
-  constructor(private activateRoute: ActivatedRoute, private router: Router,  private toastController: ToastController) {
+  constructor(private activateRoute: ActivatedRoute, private router: Router,  private toastController: ToastController, private placesService: PlacesService) {
     this.activateRoute.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation()?.extras.state) {
         this.data = this.router.getCurrentNavigation()?.extras.state?.['user'];
@@ -33,15 +38,14 @@ export class NoticesPage implements OnInit {
     });
    }
   
-  limpiar(){
-    this.posteo.titulo="";
-    this.posteo.fechaperdido="";
-    this.posteo.descripcion="";
-  }
 
 
 
-  ngOnInit() {
+
+   ngOnInit(): void {
+    this.placesService.getPlaces().subscribe(places => {
+      this.places = places;
+    })
     
   }
 
