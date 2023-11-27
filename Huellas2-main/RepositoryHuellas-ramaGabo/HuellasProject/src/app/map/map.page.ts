@@ -92,18 +92,19 @@ export class MapPage implements OnInit {
     this.showMap();
   }
 
-  addMarkersToMap(markers) {
-    for (let marker of markers) {
-      let position = new google.maps.LatLng(marker.latitude,marker.longitude);
+  addMarkersToMap(places: Place[]) {
+    for (let place of places) {
+      let position = new google.maps.LatLng(place.latitude,place.longitude);
 
       let mapMarker = new google.maps.Marker({
         position: position,
-        title: marker.title,
-        latitude: marker.latitude,
-        longitude: marker.longitude,
-        desc: marker.desc,
-        fexa: marker.fexa,
-        icon: marker.icon
+        title: place.name,
+       desc: place.description,
+       fexa: place.date,
+       icon: {
+         url: place.image, 
+         scaledSize: new google.maps.Size(45, 45) 
+       }
       });
 
       mapMarker.setMap(this.map);
@@ -111,20 +112,21 @@ export class MapPage implements OnInit {
     }
   }
 
-  addInfoWindowToMarker(marker) {
+  addInfoWindowToMarker(places) {
     let infoWindowContent = '<div id="content">' + 
-                              '<h2 id="firstHeading" class "firstHeading">' + marker.title + '</h2>' +
-                              '<p>' + marker.desc + '</p>' +
-                              '<p>' + marker.fexa + '</p>' +
+                              '<h2 id="firstHeading" class "firstHeading">' + places.title + '</h2>' +
+                              '<p>' + places.desc + '</p>' +
+                              '<p>' + 'Ult vez visto: ' + places.fexa + '</p>'
+
                               '<div>';
 
     let infoWindow = new google.maps.InfoWindow({
       content: infoWindowContent
     });
 
-    marker.addListener('click', () => {
+    places.addListener('click', () => {
       this.closeAllInfoWindows();
-      infoWindow.open(this.map, marker);
+      infoWindow.open(this.map, places);
     });
     this.infoWindows.push(infoWindow);
   }
@@ -144,7 +146,7 @@ export class MapPage implements OnInit {
       disableDefaultUI: false
     }
     this.map = new google.maps.Map(this.mapRef.nativeElement, options);
-    this.addMarkersToMap(this.markers);
+    this.addMarkersToMap(this.places);
   }
 
   ngOnInit(): void {

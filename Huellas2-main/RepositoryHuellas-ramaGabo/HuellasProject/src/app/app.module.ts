@@ -21,7 +21,11 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule,ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,FormsModule,CommonModule,AngularFireModule,AngularFireAuthModule,AngularFireModule.initializeApp(environment.firebaseConfig), provideFirebaseApp(() => initializeApp({"projectId":"huellas-5510b","appId":"1:165091675696:web:25d0a04cc687c78a5f27f5","storageBucket":"huellas-5510b.appspot.com","apiKey":"AIzaSyCnCWpp_tVzfgwhGSNxvnxd2ECwwWNESok","authDomain":"huellas-5510b.firebaseapp.com","messagingSenderId":"165091675696","measurementId":"G-12B3W82EZ8"})), provideFirestore(() => getFirestore())],
+  imports: [BrowserModule,ReactiveFormsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,FormsModule,CommonModule,AngularFireModule,AngularFireAuthModule,AngularFireModule.initializeApp(environment.firebaseConfig, "Huellas"), 
+    provideFirebaseApp(() => initializeApp({"projectId":"huellas-5510b","appId":"1:165091675696:web:25d0a04cc687c78a5f27f5",
+    "storageBucket":"huellas-5510b.appspot.com","apiKey":"AIzaSyCnCWpp_tVzfgwhGSNxvnxd2ECwwWNESok",
+    "authDomain":"huellas-5510b.firebaseapp.com","messagingSenderId":"165091675696","measurementId":"G-12B3W82EZ8"})),
+     provideFirestore(() => getFirestore())],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ServiceRestService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
